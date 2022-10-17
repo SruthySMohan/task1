@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div>
+    <img class="my_image my_image_padding" src="{% static 'img/policies.png' %}" alt=""  width="1295px;" height="750px">
+</div>
+<h2>Registration Form</h2>
+<p>Insurance is generally defined as a contract which is also called a policy. An insurance policy is a contract in which an individual or an organization gets financial protection and compensation for any damages by the insurer of the insurance company. In simpler words, one can answer what is an insurance policy as a form of protection from any unexpected loss or damage. From this paragraph, one can get a clear overview of insurance meaning.
+<br>
+    TO CONTINUE
+ </p>
+<a class="btn btn-warning" href="{% url 'form' %}">CLICK HERE</a>
+<div></div>
+{% endblock %}

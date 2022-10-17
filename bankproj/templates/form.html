@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <script>
+    function validateForm() {
+  var x = document.forms["myForm"]["name"].value;
+  var x1 = document.forms["myForm"]["dob"].value;
+  var x2 = document.forms["myForm"]["gender"].value;
+  var y = document.forms["myForm"]["number"].value;
+  var y1 = document.forms["myForm"]["email"].value;
+  var y2 = document.forms["myForm"]["address"].value;
+   var z = document.forms["myForm"]["district"].value;
+    var z1 = document.forms["myForm"]["branches"].value;
+     var z2= document.forms["myForm"]["account"].value;
+      var z3 = document.forms["myForm"]["Materials Provided"].value;
+  if (x == "" || x == null) {
+    alert("Name must be filled out");
+    return false;
+
+  }
+    if (y == "" || y == null) {
+    alert("Number must be filled out");
+    return false;
+
+  }
+   if (x1 == "" || x1 == null) {
+    alert("DOB must be filled out");
+    return false;
+
+  }
+  if (x2 == "" || x2 == null) {
+    alert("Gender must be filled out");
+    return false;
+
+  }
+  if (y1 == "" || y1 == null) {
+    alert("Email must be filled out");
+    return false;
+
+  }
+  if (y2 == "" || y2 == null) {
+    alert("Address must be filled out");
+    return false;
+
+  }
+  if (z == "" || z == null) {
+    alert("District must be filled out");
+    return false;
+
+  }
+  if (z1 == "" || z1 == null) {
+    alert("Branches must be filled out");
+    return false;
+
+  }
+  if (z2 == "" || z2 == null) {
+    alert("Account Details must be filled out");
+    return false;
+
+  }
+  if (z3 == "" || z3 == null) {
+    alert("Materials must be provided");
+    return false;
+
+  }
+}
+
+</script>
+   <script>
+        var subjectObject = {
+  "Alappuzha": {
+    "Kayamkulam": ["Current","Savings","Fixed"],
+    "Chengannur": ["Current","Savings","Fixed"],
+    "Ambalappuzha": ["Current","Savings","Fixed"],
+  },
+  "Kollam": {
+    "Kottarakara": ["Current","Savings","Fixed"],
+    "Punalur": ["Current","Savings","Fixed"],
+    "Kadappakkada":["Current","Savings","Fixed"],
+  },
+  "Ernakulam":{
+     "Aluva": ["Current","Savings","Fixed"],
+    "Edappally": ["Current","Savings","Fixed"],
+    "Perumbavoor":["Current","Savings","Fixed"],
+
+  },
+    "Ernakulam":{
+     "Aluva": ["Current","Savings","Fixed"],
+    "Edappally": ["Current","Savings","Fixed"],
+    "Perumbavoor":["Current","Savings","Fixed"],
+
+  },
+   "Pathanamthitta":{
+     "Pandalam": ["Current","Savings","Fixed"],
+    "Edapon": ["Current","Savings","Fixed"],
+    "Adoor":["Current","Savings","Fixed"],
+
+  }
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+
+     chapterSel.length = 1;
+     topicSel.length = 1;
+
+     for (var y in subjectObject[this.value]) {
+        topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+
+    chapterSel.length = 1;
+
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+</head>
+<body>
+
+<h2>Form Requirements</h2>
+    <form  name="myForm"  action="" onsubmit="return validateForm()" method="POST" required>
+        {% csrf_token %}
+<input type="text" name="name" placeholder="Name"><br>
+<input type="date" name="dob" placeholder="DOB"><br>
+<label>Gender :</label>
+<label style="padding:15px">Female</label>
+<input type="radio" name="gender">
+<label>Male</label>
+<input type="radio" name="gender"><br>
+
+
+<input type="number" name="number" placeholder="Phone no"><br>
+<input type="email" name="email" placeholder="Email Id"><br>
+<input type="text" name="address" placeholder="Address"><br>
+    </form>
+<!--<input type="text" list="district" placeholder="District">-->
+        <form name="form1" id="form1" action="" method="POST">
+            {% csrf_token %}
+    Districts: <select name="subject" id="subject">
+    <option value="" selected="selected">Select District</option>
+  </select>
+  <br>
+    Branches: <select name="topic" id="topic">
+    <option value="" selected="selected">Please select branch</option>
+  </select>
+  <br>
+    Account: <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select account type</option>
+  </select>
+  <br>
+            <label>Materials Provided : </label>
+
+  <label>Credit Card</label>
+<input type="checkbox">
+<label>Debit Card</label>
+<input type="checkbox"><br>
+  <input type="submit" value="Submit">
+</form>
+
+
+
+<!--<datalist id="district">-->
+<!--  <option value="Alappuzha">-->
+<!--    <option value="Ernakulam">-->
+<!--  <option value="Kottayam">-->
+<!--  <option value="Kollam">-->
+<!--    <option value="Trivandram">-->
+
+<!--  &lt;!&ndash; ... &ndash;&gt;-->
+<!--</datalist><br>-->
+
+<!--&lt;!&ndash;    <input type="text" list="branches" placeholder="Branches">&ndash;&gt;-->
+<!--&lt;!&ndash;    <datalist id="branches">&ndash;&gt;-->
+<!--&lt;!&ndash;        <select id="Alappuzha">&ndash;&gt;-->
+
+<!--&lt;!&ndash;        <option value="Ambalapuzha">&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="Kayamkulam">&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="Kottarakara">&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="Aluva">&ndash;&gt;-->
+<!--&lt;!&ndash;            <option value="Chengannur">&ndash;&gt;-->
+<!--&lt;!&ndash;    <option value="Pandalam">&ndash;&gt;-->
+
+<!--&lt;!&ndash;            </select>&ndash;&gt;-->
+<!--&lt;!&ndash;        </datalist><br>&ndash;&gt;-->
+<!--        <input type="text" list="district" placeholder="District">-->
+<!--        <select name="topic" id="topic">-->
+<!--    <option value="" selected="selected"></option>-->
+<!--  </select>-->
+<!--  <br><br>-->
+
+<!--        <select id="Alappuzha">-->
+<!--        <option value="Ambalapuzha">-->
+<!--    <option value="Kayamkulam">-->
+<!--            </select>-->
+<!--        <br>-->
+
+<!--<input type="text" list="account" placeholder="Account Type">-->
+<!--<datalist id="account">-->
+<!--  <option value="Current">-->
+<!--    <option value="Savings">-->
+<!--  <option value="Fixed">-->
+
+
+  <!-- ... -->
+</datalist><br>
+
+
+<!--<input type="submit"><br>-->
+
+<!--  <form method="POST" action="submit/">-->
+<!--    {% csrf_token %}-->
+<!--       <input type="submit">-->
+<!--     </form>-->
+<!--<a class="btn btn-secondary" href="{% url 'reg1' %}">Register</a>-->
+
+
+
+
+    <div>
+
+    <a class="btn btn-secondary" href="{% url 'logout' %}" >Logout</a>
+    </div>
+
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+</body>
+</html>
